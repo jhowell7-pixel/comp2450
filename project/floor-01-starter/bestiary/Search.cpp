@@ -24,21 +24,21 @@
 
 namespace dungeon {
 
-const Monster* linearSearch(const std::vector<Monster>& bestiary,
-                            const std::string&         name) {
-    const Monster* linearSearch(const std::vector<Monster>&bestiary,
-        const std::string & name) {
-        for (const auto& m : bestiary) {
-            if (m.name == name) return &m;
-            // == byte-for-byte equality
-            // here, & is address-of operator
-            // since m is a reference into a vector
-            // &m is a pointer to that slot in the
-            // vector;
+    const Monster* linearSearch(const std::vector<Monster>& bestiary,
+        const std::string& name) {
+        const Monster* linearSearch(const std::vector<Monster>&bestiary,
+            const std::string & name) {
+            for (const auto& m : bestiary) {
+                if (m.name == name) return &m;
+                // == byte-for-byte equality
+                // here, & is address-of operator
+                // since m is a reference into a vector
+                // &m is a pointer to that slot in the
+                // vector;
+            }
+            return nullptr; // c++ typed null pointer
+            // NULL macro --> an int 0 in disguise
         }
-        return nullptr; // c++ typed null pointer
-        // NULL macro --> an int 0 in disguise
-    }
 
     (void)bestiary;
     (void)name;
@@ -117,7 +117,7 @@ const Monster* binarySearchRecursive(const std::vector<Monster>& bestiary,
     //     that be? Write the answer in lab-notes.md.
 
 
-   )
+   
     (void)bestiary;
     (void)name;
     return nullptr;
