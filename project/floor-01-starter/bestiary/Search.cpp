@@ -117,6 +117,8 @@ const Monster* binarySearchRecursive(const std::vector<Monster>& bestiary,
     //     that be? Write the answer in lab-notes.md.
 
 
+
+
    
     (void)bestiary;
     (void)name;
