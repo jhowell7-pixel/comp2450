@@ -20,6 +20,10 @@
 //               reports "no such creature." Then run benchmark and capture
 //               the output for your lab-notes.md.
 #include "Search.h" 
+#include <algorithm>
+#include <cassert>
+
+
 namespace dungeon {
     const Monster* linearSearch(const std::vector<Monster>& bestiary,
         const std::string& name) {
@@ -32,26 +36,11 @@ namespace dungeon {
     }
     const Monster* binarySearch(const std::vector<Monster>& bestiary,
         const std::string& name) {
-        // TODO Floor 1 (Wed): iterative binary search.
-        //   PRECONDITION: bestiary is sorted ascending by name.
-        //
-        // Think before you type:
-        //   - Decide your invariant FIRST, then write code: does high mean
-        //     "the last valid index" (closed range, [low, high]) or "one past
-        //     the last valid index" (half-open, [low, high))? Pick one. Every
-        //     off-by-one bug starts with mixing the two.
-        //   - std::size_t is UNSIGNED. If your search range shrinks to empty
-        //     and you compute high - 1, does that value wrap around to a
-        //     huge number? Try in your head: what happens on search Aardvark
-        //     when Aardvark comes before every monster? Does your loop end?
-        //   - A name comparison has THREE outcomes: equal, less, greater. Each
-        //     goes in a different direction. If you collapse two branches into
-        //     one (e.g., an if/else instead of three cases), you've probably
-        //     broken binary search. Write all three explicitly.
-        //   - Middle index: (low + high) / 2 is textbook but can overflow for
-        //     huge N. low + (high - low) / 2 is the safe version. Write the
-        //     safe one — it's free, and it's a habit worth building.
-        // Where did you get size_t from? It's the type of bestiary.size(). If you use int instead, you may get signed/unsigned comparison warnings. If you use int for the index, you may get overflow on huge N. If you use size_t for the index, you may get underflow when subtracting 1 from 0. Pick one and stick with it.
+        
+        assert(std::is_sorted(bestiary.begin(), bestiary.end(), [](const Monster& a, const Monster& b) {
+            return a.name < b.name;
+        }));
+
         std::size_t low = 0;
         std::size_t high = bestiary.size();
         // time to loop!
@@ -122,4 +111,3 @@ namespace dungeon {
         return binarySearchRecursive(bestiary, name);
     }
 }
-    
