@@ -67,6 +67,16 @@ though because if you didn't get any response at all you wouldn't
 be able to properly troubleshoot.
 
     4. // checked vs. unchecked
+So I would keep 'at()' because a player typing 'inspect 99' could acess
+outside the inventory. 'Operator[]' doesn't check the index, so the program
+could read invalid memory instead of throwing. Testing a few inputs does not 
+prove safety because bad inputs might still trigger undefined behavior. The change
+is right only when the index is guaranteed to be valid. 
 
     5. // why std:: exception
-
+Without inheriting from std::exception, the catch 
+    block would not be able to catch the exception thrown by at(). 
+    The catch block is designed to catch exceptions of type std::exception 
+    and its derived classes. If the exception thrown does not inherit from std::exception,
+    it will not be caught by the catch block, leading to unhandled exceptions and potential program crashes. 
+    By inheriting from std::exception, we ensure that our custom exception can be caught and handled appropriately.
