@@ -281,6 +281,7 @@ int main() {
         }
     }
 
+
     // When main exits, `hero` goes out of scope. ~Hero() runs, which
     // runs ~Chain<std::string>() on hero.eventLog. By Wednesday, that
     // destructor walks the chain and frees every node. Watch the
