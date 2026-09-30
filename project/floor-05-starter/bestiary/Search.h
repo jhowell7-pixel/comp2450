@@ -19,9 +19,11 @@
 #include <cstddef>
 #include <string>
 #include <vector>
+#include <algorithm> // find if
 
 #include "../hero/Bag.h"
 #include "Monster.h"
+
 
 namespace dungeon {
 
@@ -63,10 +65,9 @@ const Monster* findMonster(const std::vector<Monster>& bestiary,
 
 template <typename T>
 const T* findByName(const Bag<T>& items, const std::string& name) {
-    for (const auto& it : items) {
-        if (it.name == name) return &it;
-    }
-    return nullptr;
+	auto it = std::find_if(items.begin(), items.end(),
+		[&name](const T& x) { return x.name == name; });
+	return (it != items.end()) ? &(*it) : nullptr;
 }
 
 }  // namespace dungeon
