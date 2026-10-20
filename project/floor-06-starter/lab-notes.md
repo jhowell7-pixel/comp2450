@@ -168,5 +168,5 @@ and why was that the right ratio? Compare to Floor 4, when you wrote a destructo
 roughly the same amount of class time.
 
 -- 
-I spent most of class just listening and taking notes to further learn about the new things this week.
+I spent most of class just listening and taking notes to further learn about the new things this week. 
 --
