@@ -32,6 +32,29 @@
 
 namespace dungeon {
 
-std::string hotPotato(const std::vector<std::string>& names, std::size_t k);
+	std::string hotPotato(const std::vector<std::string>& names, std::size_t k) {
+	// check if empty
+	if (names.empty()) {
+		return "";
+	}
+
+	// create our queue
+	Queue<std::string> queue;
+
+	//enqueue!
+	for (const auto& name : names) {
+		queue.enqueue(name);
+	}
+
+	while (queue.size() > 1) {
+		for (std::size_t i = 0; i < k - 1; ++i) {
+			queue.enqueue(queue.front());
+			queue.dequeue();
+		}
+		queue.dequeue();
+	}
+
+	return queue.front();
+}
 
 }  // namespace dungeon
