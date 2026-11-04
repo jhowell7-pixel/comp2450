@@ -23,6 +23,7 @@ Creatures of the Hold/Beasts/Giants/Frostmaw
 Creatures of the Hold/Vermin/Bone Spider
 Creatures of the Hold/Vermin/Ratking
 Creatures of the Hold/Vermin/Marsh Lurker
+Creatures of the Hold/Vermin/Goblin
 Creatures of the Hold/Constructs/Stone Sentinel
 
 # Note: the Goblin is deliberately absent. McCown never finished cataloguing
