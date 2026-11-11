@@ -112,7 +112,9 @@ public:
     // is empty). Monday's first edit lights phase 1.
     void index(const Monster& m) {
         (void)m;
-        // TODO Monday — populate byName_, weaknesses_, and weaknessCounts_.
+		byName_[m.name] = m;              // index the record by name
+		weaknesses_.insert(m.weakness);   // a set dedups automatically)
+		weaknessCounts_[m.weakness] += 1; // bump the count for this weakness
     }
 
     // Return whether a monster with that name is in the registry — using the
@@ -122,7 +124,7 @@ public:
     //     return byName_.count(name) > 0;     // (or: find(name) != end())
     bool knows(const std::string& name) const {
         (void)name;
-        return false;   // TODO Monday — stub never knows anyone
+        return byName_.count(name) > 0;   
     }
 
     // ----- Wednesday: three containers, three one-liners -------------
@@ -136,7 +138,8 @@ public:
     //     return it == byName_.end() ? nullptr : &it->second;
     const Monster* recall(const std::string& name) const {
         (void)name;
-        return nullptr;   // TODO Wednesday — stub finds no one
+        auto it = byName_.find(name);
+        return it == byName_.end() ? nullptr : &it->second;
     }
 
     // Return whether ANY monster has weakness w — using set::count on
@@ -147,7 +150,7 @@ public:
     //     return weaknesses_.count(w) > 0;
     bool hasWeakness(const std::string& w) const {
         (void)w;
-        return false;   // TODO Wednesday — stub claims nothing is weak to anything
+        return weaknesses_.count(w) > 0;   // TODO Wednesday — stub claims nothing is weak to anything
     }
 
     // Return how many monsters share weakness w, or 0 if none — by reading
@@ -159,7 +162,8 @@ public:
     //     return it == weaknessCounts_.end() ? 0 : it->second;
     int countWeakness(const std::string& w) const {
         (void)w;
-        return 0;   // TODO Wednesday — stub counts nothing
+        auto it = weaknessCounts_.find(w);
+        return it == weaknessCounts_.end() ? 0 : it->second;
     }
 
     // ----- Friday: mutate, staying consistent ------------------------
