@@ -190,7 +190,15 @@ public:
     //     return true;
     bool forget(const std::string& name) {
         (void)name;
-        return false;   // TODO Friday — stub forgets nothing
+		auto it = byName_.find(name);
+		if (it == byName_.end()) return false;
+		const std::string w = it->second.weakness;
+		byName_.erase(it);
+		if (--weaknessCounts_[w] == 0) {
+			weaknessCounts_.erase(w);
+			weaknesses_.erase(w);
+		}
+		return true;
     }
 
 private:
